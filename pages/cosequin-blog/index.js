@@ -1,21 +1,21 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Layout, { siteTitle } from '../components/layout';
-import utilStyles from '../styles/utils.module.css';
-import { loadPosts } from '../lib/posts';
+import Layout, { siteTitle } from '../../components/layout';
+import utilStyles from '../../styles/utils.module.css';
+import { loadPosts } from '../../lib/posts';
 
 export async function getStaticProps() {
   const posts = await loadPosts()
   return { props: { posts } };
 }
 
-export default function Home({ posts }) {
-  return (
-    <Layout home>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
-      <section className={utilStyles.headingMd}>
+export default function Blog({ posts }) {
+    return (
+      <Layout home>
+        <Head>
+          <title>{siteTitle}</title>
+        </Head>
+        <section className={utilStyles.headingMd}>
         <div className="blogs">
           {posts.data.map(({ id, title, slug, hero_image, excerpt, i }) => (
               <div key={i} id={`blog${id}`} className={`blogs__item item1 horses`}>
@@ -35,7 +35,7 @@ export default function Home({ posts }) {
               </div>
           ))}
         </div>
-      </section>
-    </Layout>
-  );
-}
+        </section>
+      </Layout>
+    );
+  }
